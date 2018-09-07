@@ -11,6 +11,7 @@ import logging
 import sys
 
 from vsync import __version__
+from vsync.container_monitor import ContainerMonitor
 
 
 def main():
@@ -22,4 +23,9 @@ def main():
     except DocoptExit:
         print(__doc__)
     else:
-        pass
+        monitor = ContainerMonitor()
+
+        try:
+            monitor.monitor()
+        except KeyboardInterrupt:
+            sys.exit(0)
